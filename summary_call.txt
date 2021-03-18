@@ -1,0 +1,5 @@
+Summary of the conversation with Krzysztof:
+it is possible to download this data in 3 ways:
+upload assembly_summary_refseq.txt file to pandas and then search individual columns - i've got problems with charmap... can't get a specific column 
+I can also work with entrez
+or with bash - here's I've got problems with utf-8 encoding.
