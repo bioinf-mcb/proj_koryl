@@ -107,7 +107,7 @@ echo "${INPUT} done."
 ```
 ##### Run PHANOTATE
 ```
-echo 1 2 3 4 | xargs -n1 -d ' ' -P4 -I{} ./tmp.sh {}
+nohup echo 1 2 3 4 | xargs -n1 -d ' ' -P4 -I{} ./tmp.sh {} &
 ```
 ###### echo 
 recalls the number of the new fast file created with pyfasta
