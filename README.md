@@ -25,6 +25,17 @@ or
 conda create -n samtools112 -c conda-forge -c bioconda samtools=1.12
 ```
 
+#### PYFASTA
+
+```
+conda install -c bioconda pyfasta
+````
+or
+```
+conda install -c bioconda/label/cf201901 pyfasta
+```
+
+
 #### PHANOTATE:
 https://github.com/deprekate/PHANOTATE
 ```
@@ -69,4 +80,36 @@ download_genomes.phage_list.create_genbank_list('NCBI Virus *.csv file directory
 download_genomes.assembly.download_refseq/download_genbank(folder path where genomes will be downloaded, assembly_summary_refseq/assembly_summary genbank file directory, file path with list of accesions/assemblies)
 ```
 
+#### SAMTOOLS
+
+```
+download_genomes.samtools.to_one_file(downloaded genomes directory)
+```
+### PYFASTA
+Split multiple fasta file into more smaller files to run Phanotate on a few cores
+```
+pyfasta split -n8 genomes.fasta
+```
+### PHANOTATE
+
+In terminal create new file:
+run_phanotate.sh
+
+```
+#!/bin/bash
  
+input="${1}"   
+INPATH= write  inpath directory
+OUTPATH= write outpath directory
+
+/home/*/PHANOTATE/phanotate.py "${INPATH}/genomes.${input}.fasta" >> "${OUTPATH}/Phanotate.${input}.txt" 
+echo "${INPUT} done."
+```
+##### Run PHANOTATE
+```
+echo 1 2 3 4 | xargs -n1 -d ' ' -P4 -I{} ./tmp.sh {}
+```
+###### echo 
+recalls the number of the new fast file created with pyfasta
+###### -P
+recalls the number of cores the phanotate should run on
