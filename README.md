@@ -13,7 +13,7 @@ Then, using external command-line programs, the genomes can be annotated.
 pip install pandas
 conda install pandas
 
-####SAMTOOLS:
+#### SAMTOOLS:
 https://github.com/samtools/samtools
 
 ```
