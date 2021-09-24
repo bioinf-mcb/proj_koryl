@@ -69,13 +69,6 @@ download_genomes.directory()
 ```
 This definition will ask you to write path to change directory
 
-#### Download assembly_summary_refseq/assembly_summary genbank
-
-```
-download_genomes.download_summary.download_refseq_summary(directory/filename)
-download_genomes.download_summary.download_genbank_summary(directory/filename)
-```
-
 #### Download genomes:
 ```
 download_genomes.get_ncbi_genomes()
@@ -114,8 +107,9 @@ download_genomes.metadata()
 #### PHANOTATE
 
 In terminal create new file:
-phanotate.sh
-
+```
+touch phanotate.sh
+```
 ```
 #!/bin/bash
  
