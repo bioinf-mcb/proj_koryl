@@ -167,7 +167,7 @@ def removed():
         soup = BeautifulSoup(r.content.lower(), 'lxml')
         words = soup.find_all(text=lambda text: text and the_word.lower() in text)
         count = len(words)
-#         print('\nUrl: {}\ncontains {} of words: {}'.format(url, count, the_word))
+        print('\nUrl: {}\ncontains {} of words: {}'.format(url, count, the_word))
         for elem in accession:
             if count > 0:
                 df = pd.DataFrame({'Accession':elem, 'Removed': 'yes'}, index=[0])
