@@ -77,6 +77,39 @@ Then clone repository:
 ```
 git clone https://github.com/bioinf-mcb/proj_koryl.git
 ```
+Change the path to the proj_koryl folder
+
+```
+cd proj_koryl
+```
+
+Change the permission to access python file
+```
+chmod u+x manage_db.py
+```
+
+## RUN PROGRAM
+
+To check the arguments you need to run the program, you can type
+
+```
+python manage_db.py -h
+```
+
+```
+'-d', '--directory', help='Enter the path to the database folder'
+'-i', '--input', help='Enter the file name in *.acc format. Download from NCBI Virus website'
+'-e', '--email', help='NCBI requires your e-mail address every time to know who you are'
+'-o', '--output', help='Enter the file name in *.fasta format to retrieve bacteriophage genomes'
+'-c','--metadata', help='Enter the  metadata file name in *.csv format. Download from NCBI Virus website'
+'-t', '--ictv', help='Enter the name of the ICTV file in the *.xlsx format. Download this file from the ICTV website.'
+'-g', '--genbank', help='Enter the file name in * .gb format. Genbank records of incomplete genomes will be kept here to check if they are full sequence length'
+```
+
+To run the program, for example, you should enter:
+```
+python manage_db.py -d /home/MCB/your_login_name/path_to_database/ -i sequences.csv -e your_email@domain.com -c sequences.csv -t ICTV.xlsx -g partial.gb -o genomes.fasta
+```
 
 
 
