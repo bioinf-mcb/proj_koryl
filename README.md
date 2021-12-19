@@ -1,131 +1,87 @@
 ## ABOUT PHAGE DATABASE PIPELINE
 
-The Phage Database pipeline is used to retrieve bacteriophage (phage) genomes. 
-It includes Entrez Python library, Bachplip tool and Phanotate tool.
-Firstly, it is necessary to download file with accessions of interest (*.acc file) and file with metadata (*.csv)
+Command-line program for retrieving bacteriophage genomes from NCBI Virus and metadata. Additionally, adding information from ICTV and information about completeness, sequence length and checking that all genomes are still available on the NCBI Virus website.
+The program was written in Python 3.8.3.
 
 ## NECESSARY INSTALLATIONS
 
 #### PANDAS:
-```
-pip install pandas
-```
-or 
+
 ```
 conda install pandas
 ```
-
-#### SAMTOOLS:
-https://github.com/samtools/samtools
-
+#### BS4:
 ```
-conda install -c conda-forge -c bioconda samtools=1.12
-```
-
-or
-```
-conda create -n samtools112 -c conda-forge -c bioconda samtools=1.12
-```
-
-#### PYFASTA
-
-```
-conda install -c bioconda pyfasta
-````
-or
-```
-conda install -c bioconda/label/cf201901 pyfasta
-```
-
-
-#### PHANOTATE:
-https://github.com/deprekate/PHANOTATE
-```
-pip3 install phanotate
+conda install -c conda-forge bs4
 ```
 or
 ```
-git clone https://github.com/deprekate/PHANOTATE.git
-cd PHANOTATE
-python3 setup.py install
+conda install -c conda-forge/label/cf202003 bs4
+```
+#### BIOPYTHON:
+```
+conda install -c anaconda biopython
+```
+#### ARGPARSE:
+```
+conda install -c conda-forge argparse
+```
+#### REGEX:
+Download one of the following:
+```
+conda install -c conda-forge regex
+```
+```
+conda install -c conda-forge/label/gcc7 regex
+```
+```
+conda install -c conda-forge/label/cf201901 regex
+```
+```
+conda install -c conda-forge/label/cf202003 regex
+```
+#### SHUTIL:
+```
+pip install shutil
+```
+#### NUMPY:
+```
+pip install numpy
+```
+#### REQUESTS:
+```
+conda install -c anaconda requests
 ```
 
-## PIPELINE EXECUTION
+## BEFORE RUNNING PROGRAM
 
-Pipeline is written in Python 3.8 and the individual functions need to be imported.
-```
-from download_genomes import folder, directory, acc_list, get_ncbi_genomes, pyfasta, bacphlip, metadata
-```
+Before you run the program, go to the website: 
+https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/virus?SeqType_s=Nucleotide&VirusLineage_ss=Bacteriophage,%20all%20taxids&Completeness_s=complete
+On the NCBI website click "Download" at the top. Then select in the column "Accession" -> "Nucleotide". Press "Next" twice. In the third step, select "Accession with version". And then download file with all accessions ids.
 
-#### Create folders in database:
-```
-download_genomes.folder()
-```
-This definition will ask you to write parent dir and name of a new folder
+Additionally, press "Download" again at the top of the page. Now select the "Current table view result" column and press "CSV format". Press "Next" twice. In the third step, press "Select all" and "Accession with version". Now you can download the metadata files.
 
-#### Change current directory:
-```
-download_genomes.directory()
-```
-This definition will ask you to write path to change directory
+### Now you should upload these files to your virtual machine.
 
-#### Download genomes:
-```
-download_genomes.get_ncbi_genomes()
-```
-This definition will ask you to write you e-mail adress (it is necessary to tell NCBI who you are), filename with all accessions and genomes filename. 
+## HOW TO RUN PROGRAM
 
-### PYFASTA
-Split multiple fasta file into more smaller files to run Phanotate on a few cores
-In terminal:
+Download this repository.
+If you don't have git downloaded on your virtual machine, please do the following:
+
 ```
-pyfasta split -n8 genomes.fasta
+sudo apt install git-all
 ```
-or in Python:
+Change the current working directory to the location where you want the cloned directory.
+
+Then clone repository:
 ```
-download_genomes.pyfasta()
+git clone https://github.com/bioinf-mcb/proj_koryl.git
 ```
-The definition will ask you to write on how many files do you want to split the multifasta file and genomes filename.
 
 
-#### BACPHLIP
-Bacphlip is a tool to predict if phage is virulent or temperate
-Write in terminal: 
-```
-bacplip -i multifasta_file --multi_fasta
-```
-or in Python:
-```
-download_genomes.bacphlip()
-```
-The definition will ask you to write multifasta filename
-###### Add bacphlip virulent prediction to metadata
-```
-download_genomes.metadata()
-```
 
-#### PHANOTATE
 
-In terminal create new file:
-```
-touch phanotate.sh
-```
-```
-#!/bin/bash
- 
-input="${1}"   
-INPATH= write  inpath directory
-OUTPATH= write outpath directory
 
-{write path to the phanotate.py file}/PHANOTATE/phanotate.py "${INPATH}/genomes.${input}.fasta" >> "${OUTPATH}/Phanotate.${input}.txt" 
-echo "${INPUT} done."
-```
-##### Run PHANOTATE
-```
-chmod u+x phanotate.sh
-nohup echo -n 1 2 3 4 | xargs -n1 -d ' ' -P4 -I{} ./phanotate.sh {} &
-```
-###### echo 
-recalls the number of the new fast file created with pyfasta
-###### -P
-recalls the number of cores the phanotate should run on
+
+
+
