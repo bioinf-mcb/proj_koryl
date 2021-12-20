@@ -108,7 +108,7 @@ python manage_db.py -h
 
 To run the program, for example, you should enter:
 ```
-python manage_db.py -d /home/MCB/your_login_name/path_to_database/ -i sequences.csv -e your_email@domain.com -c sequences.csv -t ICTV.xlsx -g partial.gb -o genomes.fasta
+python /path_to_git_repository/proj_koryl/manage_db.py -d /.../path_to_database/ -i sequences.csv -e your_email@domain.com -c sequences.csv -t ICTV.xlsx -g partial.gb -o genomes.fasta
 ```
 
 
